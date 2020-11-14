@@ -4,7 +4,6 @@ import {
   isFetchingSelector,
   selectedIdSelector,
   todoSelector,
-  todosSelector,
 } from './todo.selector';
 
 interface State {
@@ -76,36 +75,5 @@ describe('selectors', () => {
     expect(todoSelector(state1)).toEqual(todos[0]);
     expect(todoSelector(state2)).toEqual(null);
     expect(todoSelector(state3)).toEqual(null);
-  });
-
-  it('should handle todosSelector', () => {
-    const todos: Todo[] = [
-      {
-        id: '1',
-        title: 'title',
-        completed: false,
-        createdAt: 123456789,
-        updatedAt: 123456789,
-      },
-      {
-        id: '2',
-        title: 'title',
-        completed: false,
-        createdAt: 123456789,
-        updatedAt: 123456789,
-      },
-      {
-        id: '3',
-        title: 'title',
-        completed: false,
-        createdAt: 123456789,
-        updatedAt: 123456789,
-      },
-    ];
-    const state: State = {
-      [featureKey]: adapter.setAll(initialState, todos),
-    };
-
-    expect(todosSelector(state)).toEqual(todos);
   });
 });
