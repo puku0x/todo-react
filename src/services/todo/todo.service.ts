@@ -28,7 +28,7 @@ export class TodoService {
   }
 
   async create(todo: TodoCreateDto): Promise<Todo> {
-    const url = new URL(`${this.baseUrl}/todos/`);
+    const url = new URL(`${this.baseUrl}/todos`);
     return await fetch(url.toString(), {
       method: 'POST',
       body: JSON.stringify(todo),
