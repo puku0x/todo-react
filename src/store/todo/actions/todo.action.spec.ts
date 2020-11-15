@@ -2,7 +2,7 @@ import { getDefaultMiddleware } from '@reduxjs/toolkit';
 import configureStore from 'redux-mock-store';
 
 import { Todo, TodoCreateDto, TodoUpdateDto } from '../../../models';
-import { todoService } from '../../..//services';
+import { todoService } from '../../../services';
 import { State, AppDispatch } from '../../store';
 import {
   fetchAllTodos,
