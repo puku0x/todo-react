@@ -34,13 +34,11 @@ export const useTodoCreatePresenter = (arg: {
 
   const formik = useFormik({
     enableReinitialize: true,
-    initialErrors: {
-      title: '',
-    },
     initialValues,
+    validateOnMount: true,
     validationSchema,
     onSubmit: (values) => {
-      onCreate && onCreate(toDto(values));
+      onCreate?.(toDto(values));
     },
   });
 
