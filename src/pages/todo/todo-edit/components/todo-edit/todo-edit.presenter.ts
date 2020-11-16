@@ -40,9 +40,12 @@ export const useTodoEditPresenter = (arg: {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues,
+    validateOnMount: true,
     validationSchema,
     onSubmit: (values) => {
-      todo && onUpdate && onUpdate(toDto(todo, values));
+      if (todo) {
+        onUpdate?.(toDto(todo, values));
+      }
     },
   });
 
