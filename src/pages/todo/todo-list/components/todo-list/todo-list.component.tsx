@@ -1,4 +1,4 @@
-import { ClassNames } from '@emotion/core';
+import { cx } from '@emotion/css';
 import styled from '@emotion/styled';
 import * as React from 'react';
 import { ChangeEvent, useCallback } from 'react';
@@ -27,7 +27,7 @@ export const TodoListComponent: React.FC<Props> = React.memo((props) => {
   const changeOffset = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       const value = Number(event.target.value);
-      onChangeOffset && onChangeOffset(value);
+      onChangeOffset?.(value);
     },
     [onChangeOffset]
   );
@@ -35,7 +35,7 @@ export const TodoListComponent: React.FC<Props> = React.memo((props) => {
   const changeLimit = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       const value = Number(event.target.value);
-      onChangeLimit && onChangeLimit(value);
+      onChangeLimit?.(value);
     },
     [onChangeLimit]
   );
@@ -47,7 +47,7 @@ export const TodoListComponent: React.FC<Props> = React.memo((props) => {
         <NavLink to="/todos/new">Add a new todo</NavLink>
       </p>
       <form>
-        offset
+        {' offset '}
         <input
           type="number"
           min="0"
@@ -55,7 +55,7 @@ export const TodoListComponent: React.FC<Props> = React.memo((props) => {
           defaultValue={offset}
           onChange={changeOffset}
         />
-        limit
+        {' limit '}
         <input
           type="number"
           min="0"
@@ -67,16 +67,12 @@ export const TodoListComponent: React.FC<Props> = React.memo((props) => {
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>
-            <ClassNames>
-              {({ cx }) => (
-                <NavLink
-                  className={cx(['completed', todo.completed])}
-                  to={`/todos/${todo.id}`}
-                >
-                  {todo.title}
-                </NavLink>
-              )}
-            </ClassNames>
+            <NavLink
+              className={cx([{ completed: todo.completed }])}
+              to={`/todos/${todo.id}`}
+            >
+              {todo.title}
+            </NavLink>
           </li>
         ))}
       </ul>
