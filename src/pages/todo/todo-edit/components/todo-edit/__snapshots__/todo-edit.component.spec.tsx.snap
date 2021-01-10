@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TodoEdit render 1`] = `
+<DocumentFragment>
+  <a
+    href="/todos/1"
+  >
+    Back to detail
+  </a>
+  <h2>
+    todo-edit
+  </h2>
+  <form>
+    <p>
+      <button
+        type="submit"
+      >
+        Save
+      </button>
+    </p>
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            title
+          </td>
+          <td>
+            <input
+              name="title"
+              type="text"
+              value="title"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            completed
+          </td>
+          <td>
+            <input
+              name="completed"
+              type="checkbox"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+</DocumentFragment>
+`;
+
+exports[`TodoEdit render with isFetching 1`] = `
+<DocumentFragment>
+  <a
+    href="/todos/undefined"
+  >
+    Back to detail
+  </a>
+  <h2>
+    todo-edit
+  </h2>
+  loading...
+</DocumentFragment>
+`;

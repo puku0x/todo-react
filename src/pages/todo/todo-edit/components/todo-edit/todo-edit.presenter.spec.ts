@@ -3,7 +3,7 @@ import { act, renderHook } from '@testing-library/react-hooks';
 import { Todo } from '../../../../../models';
 import { useTodoEditPresenter } from './todo-edit.presenter';
 
-describe('useTodoEditForm', () => {
+describe('useTodoEditPresenter', () => {
   it('should handle submit', async () => {
     const todo: Todo = {
       id: '1',
