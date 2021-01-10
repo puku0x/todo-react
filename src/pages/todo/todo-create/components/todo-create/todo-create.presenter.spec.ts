@@ -2,7 +2,7 @@ import { act, renderHook } from '@testing-library/react-hooks';
 
 import { useTodoCreatePresenter } from './todo-create.presenter';
 
-describe('useTodoCreateForm', () => {
+describe('useTodoCreatePresenter', () => {
   it('should handle submit', async () => {
     const onCreate = jest.fn();
     const { result, waitFor } = renderHook(() =>

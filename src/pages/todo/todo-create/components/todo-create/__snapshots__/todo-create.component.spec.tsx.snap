@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TodoCreate render 1`] = `
+<DocumentFragment>
+  <a
+    href="/todos"
+  >
+    Back to list
+  </a>
+  <h2>
+    todo-create
+  </h2>
+  <form>
+    <p>
+      <button
+        disabled=""
+        type="submit"
+      >
+        Save
+      </button>
+    </p>
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            title
+          </td>
+          <td>
+            <input
+              name="title"
+              type="text"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+</DocumentFragment>
+`;
+
+exports[`TodoCreate render with isFetching 1`] = `
+<DocumentFragment>
+  <a
+    href="/todos"
+  >
+    Back to list
+  </a>
+  <h2>
+    todo-create
+  </h2>
+  <form>
+    <p>
+      <button
+        disabled=""
+        type="submit"
+      >
+        Save
+      </button>
+    </p>
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            title
+          </td>
+          <td>
+            <input
+              name="title"
+              type="text"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+</DocumentFragment>
+`;
