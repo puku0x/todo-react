@@ -19,13 +19,7 @@ jest.mock('react-redux', () => ({
   useSelector: () => jest.fn(),
 }));
 
-jest.mock('../actions', () => ({
-  fetchAllTodos: jest.fn(),
-  fetchTodo: jest.fn(),
-  createTodo: jest.fn(),
-  updateTodo: jest.fn(),
-  removeTodo: jest.fn(),
-}));
+jest.mock('../actions');
 
 const mockStore = configureStore();
 const store = mockStore();
