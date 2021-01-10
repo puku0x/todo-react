@@ -31,6 +31,7 @@ describe('reducers', () => {
           limit: 10,
         },
         requestId: '',
+        requestStatus: 'pending',
       },
     };
     const expectedState: TodoState = {
@@ -79,6 +80,7 @@ describe('reducers', () => {
           limit: 10,
         },
         requestId: '',
+        requestStatus: 'fulfilled',
       },
     };
     const { todos } = action.payload;
@@ -102,13 +104,15 @@ describe('reducers', () => {
       type: fetchAllTodos.rejected.type,
       payload: undefined,
       meta: {
+        aborted: false,
         arg: {
           offset: 0,
           limit: 10,
         },
-        requestId: '',
-        aborted: false,
         condition: false,
+        rejectedWithValue: false,
+        requestId: '',
+        requestStatus: 'rejected',
       },
       error: new Error(),
     };
@@ -132,6 +136,7 @@ describe('reducers', () => {
           id: '1',
         },
         requestId: '',
+        requestStatus: 'pending',
       },
     };
     const expectedState: TodoState = {
@@ -191,6 +196,7 @@ describe('reducers', () => {
           id: '1',
         },
         requestId: '',
+        requestStatus: 'fulfilled',
       },
     };
     const { todo } = action.payload;
@@ -218,6 +224,8 @@ describe('reducers', () => {
           id: '1',
         },
         requestId: '',
+        requestStatus: 'rejected',
+        rejectedWithValue: false,
         aborted: false,
         condition: false,
       },
@@ -245,6 +253,7 @@ describe('reducers', () => {
           },
         },
         requestId: '',
+        requestStatus: 'pending',
       },
     };
     const expectedState: TodoState = {
@@ -282,6 +291,7 @@ describe('reducers', () => {
           },
         },
         requestId: '',
+        requestStatus: 'fulfilled',
       },
     };
     const { todo } = action.payload;
@@ -305,14 +315,16 @@ describe('reducers', () => {
       type: createTodo.rejected.type,
       payload: undefined,
       meta: {
+        aborted: false,
         arg: {
           todo: {
             title: 'title',
           },
         },
-        requestId: '',
-        aborted: false,
         condition: false,
+        rejectedWithValue: false,
+        requestId: '',
+        requestStatus: 'rejected',
       },
       error: new Error(),
     };
@@ -341,6 +353,7 @@ describe('reducers', () => {
           },
         },
         requestId: '',
+        requestStatus: 'pending',
       },
     };
     const expectedState: TodoState = {
@@ -403,6 +416,7 @@ describe('reducers', () => {
           },
         },
         requestId: '',
+        requestStatus: 'fulfilled',
       },
     };
     const { todo } = action.payload;
@@ -429,6 +443,7 @@ describe('reducers', () => {
       type: updateTodo.rejected.type,
       payload: undefined,
       meta: {
+        aborted: false,
         arg: {
           id: '1',
           todo: {
@@ -437,9 +452,10 @@ describe('reducers', () => {
             completed: false,
           },
         },
-        requestId: '',
-        aborted: false,
         condition: false,
+        rejectedWithValue: false,
+        requestId: '',
+        requestStatus: 'rejected',
       },
       error: new Error(),
     };
@@ -464,6 +480,7 @@ describe('reducers', () => {
           id: '1',
         },
         requestId: '',
+        requestStatus: 'pending',
       },
     };
     const expectedState: TodoState = {
@@ -516,6 +533,7 @@ describe('reducers', () => {
           id: '1',
         },
         requestId: '',
+        requestStatus: 'fulfilled',
       },
     };
     const { id } = action.payload;
@@ -539,12 +557,14 @@ describe('reducers', () => {
       type: removeTodo.rejected.type,
       payload: undefined,
       meta: {
+        aborted: false,
         arg: {
           id: '1',
         },
-        requestId: '',
-        aborted: false,
         condition: false,
+        rejectedWithValue: false,
+        requestId: '',
+        requestStatus: 'rejected',
       },
       error: new Error(),
     };
