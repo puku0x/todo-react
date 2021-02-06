@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { useCallback, useEffect } from 'react';
+import { FunctionComponent, memo, useCallback, useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
 import { useTodoStore } from '../../../../../store';
@@ -10,7 +9,7 @@ type Props = {
   limit: number;
 };
 
-export const TodoListContainer: React.FC<Props> = React.memo((props) => {
+export const TodoListContainer: FunctionComponent<Props> = memo((props) => {
   const { offset, limit } = props;
   const history = useHistory();
   const location = useLocation();

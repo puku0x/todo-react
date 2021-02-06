@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { useCallback, useEffect } from 'react';
+import { FunctionComponent, memo, useCallback, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { TodoUpdateDto } from '../../../../../models';
@@ -10,7 +9,7 @@ type Props = {
   id: string;
 };
 
-export const TodoEditContainer: React.FC<Props> = React.memo((props) => {
+export const TodoEditContainer: FunctionComponent<Props> = memo((props) => {
   const { id } = props;
   const history = useHistory();
   const { isFetching, todo, fetch, update } = useTodoStore();

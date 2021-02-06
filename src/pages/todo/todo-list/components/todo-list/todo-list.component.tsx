@@ -1,7 +1,6 @@
 import { cx } from '@emotion/css';
 import styled from '@emotion/styled';
-import * as React from 'react';
-import { ChangeEvent, useCallback } from 'react';
+import { ChangeEvent, FunctionComponent, memo, useCallback } from 'react';
 import { NavLink as NavLinkBase } from 'react-router-dom';
 
 import { Todo } from '../../../../../models';
@@ -21,7 +20,7 @@ type Props = {
   onChangeLimit?: (limit: number) => void;
 };
 
-export const TodoListComponent: React.FC<Props> = React.memo((props) => {
+export const TodoListComponent: FunctionComponent<Props> = memo((props) => {
   const { todos, offset, limit, onChangeOffset, onChangeLimit } = props;
 
   const changeOffset = useCallback(

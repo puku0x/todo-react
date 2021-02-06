@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks';
-import * as React from 'react';
+import { FunctionComponent } from 'react';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 
@@ -24,7 +24,7 @@ jest.mock('../actions');
 const mockStore = configureStore();
 const store = mockStore();
 
-const wrapper: React.FC = ({ children }) => (
+const wrapper: FunctionComponent = ({ children }) => (
   <Provider store={store}>{children}</Provider>
 );
 

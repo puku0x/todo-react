@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { FunctionComponent, memo } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { Todo } from '../../../../../models';
@@ -12,7 +12,7 @@ type Props = {
   todo: Todo | null;
 };
 
-export const TodoDetail: React.FC<Props> = React.memo((props) => {
+export const TodoDetail: FunctionComponent<Props> = memo((props) => {
   const { todo } = props;
 
   return (

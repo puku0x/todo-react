@@ -1,12 +1,12 @@
 import { act, render } from '@testing-library/react';
-import * as React from 'react';
+import { Fragment } from 'react';
 import { MemoryRouter } from 'react-router-dom';
 
 import { TodoCreate } from './todo-create.component';
 
 describe('TodoCreate', () => {
   it('render', async () => {
-    let result = render(<React.Fragment />);
+    let result = render(<Fragment />);
     await act(async () => {
       result = render(<TodoCreate />, {
         wrapper: MemoryRouter,
@@ -18,7 +18,7 @@ describe('TodoCreate', () => {
   });
 
   it('render with isFetching', async () => {
-    let result = render(<React.Fragment />);
+    let result = render(<Fragment />);
     await act(async () => {
       result = render(<TodoCreate isFetching />, {
         wrapper: MemoryRouter,

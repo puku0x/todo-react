@@ -1,5 +1,5 @@
 import { act, render } from '@testing-library/react';
-import * as React from 'react';
+import { Fragment } from 'react';
 import { MemoryRouter } from 'react-router-dom';
 
 import { Todo } from '../../../../../models';
@@ -14,7 +14,7 @@ describe('TodoEdit', () => {
       createdAt: 123456789,
       updatedAt: 123456789,
     };
-    let result = render(<React.Fragment />);
+    let result = render(<Fragment />);
     await act(async () => {
       result = render(<TodoEdit todo={todo} />, {
         wrapper: MemoryRouter,
@@ -26,7 +26,7 @@ describe('TodoEdit', () => {
   });
 
   it('render with isFetching', async () => {
-    let result = render(<React.Fragment />);
+    let result = render(<Fragment />);
     await act(async () => {
       result = render(<TodoEdit isFetching todo={null} />, {
         wrapper: MemoryRouter,

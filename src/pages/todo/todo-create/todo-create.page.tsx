@@ -1,7 +1,7 @@
-import * as React from 'react';
+import { FunctionComponent, memo } from 'react';
 
 import { TodoCreateContainer } from './containers';
 
-export const TodoCreatePage: React.FC = React.memo(() => {
+export const TodoCreatePage: FunctionComponent = memo(() => {
   return <TodoCreateContainer />;
 });

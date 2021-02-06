@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { FunctionComponent, memo } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { Todo, TodoUpdateDto } from '../../../../../models';
@@ -10,7 +10,7 @@ type Props = {
   onUpdate?: (todo: TodoUpdateDto) => void;
 };
 
-export const TodoEdit: React.FC<Props> = React.memo((props) => {
+export const TodoEdit: FunctionComponent<Props> = memo((props) => {
   const { isFetching, todo, onUpdate } = props;
 
   const {

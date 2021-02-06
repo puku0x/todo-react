@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { Suspense } from 'react';
+import { FunctionComponent, Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import { TodoCreatePage } from './todo-create';
@@ -7,7 +6,7 @@ import { TodoDetailPage } from './todo-detail';
 import { TodoEditPage } from './todo-edit';
 import { TodoListPage } from './todo-list';
 
-export const TodoRoute: React.FC = () => {
+export const TodoRoute: FunctionComponent = () => {
   return (
     <Suspense fallback={<div>loading...</div>}>
       <Switch>

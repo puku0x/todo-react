@@ -1,12 +1,11 @@
-import * as React from 'react';
-import { useCallback } from 'react';
+import { FunctionComponent, memo, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { TodoCreateDto } from '../../../../../models';
 import { useTodoStore } from '../../../../../store';
 import { TodoCreate } from '../../components';
 
-export const TodoCreateContainer: React.FC = React.memo((props) => {
+export const TodoCreateContainer: FunctionComponent = memo(() => {
   const history = useHistory();
   const { isFetching, create } = useTodoStore();
 

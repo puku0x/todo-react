@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { useEffect } from 'react';
+import { FunctionComponent, memo, useEffect } from 'react';
 
 import { useTodoStore } from '../../../../../store';
 import { TodoDetail } from '../../components';
@@ -8,7 +7,7 @@ type Props = {
   id: string;
 };
 
-export const TodoDetailContainer: React.FC<Props> = React.memo((props) => {
+export const TodoDetailContainer: FunctionComponent<Props> = memo((props) => {
   const { id } = props;
   const { isFetching, todo, fetch } = useTodoStore();
 
