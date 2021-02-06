@@ -1,4 +1,4 @@
-import { Todo, TodoCreateDto, TodoUpdateDto } from '../../todo';
+import { Todo, TodoCreateDto, TodoUpdateDto } from '../todo.model';
 
 export const createTodosMock = (): Todo[] => {
   return [
