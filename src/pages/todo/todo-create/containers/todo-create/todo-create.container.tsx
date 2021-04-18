@@ -1,23 +1,10 @@
-import { FunctionComponent, memo, useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
+import { memo } from 'react';
 
-import { TodoCreateDto } from '../../../../../models';
-import { useTodoStore } from '../../../../../store';
 import { TodoCreate } from '../../components';
+import { useTodoCreateFacade } from './todo-create.facade';
 
-export const TodoCreateContainer: FunctionComponent = memo(() => {
-  const history = useHistory();
-  const { isFetching, create } = useTodoStore();
+export const TodoCreateContainer = memo(() => {
+  const { isFetching, create } = useTodoCreateFacade();
 
-  const onCreate = useCallback(
-    (todo: TodoCreateDto) => {
-      create({ todo }).then((payload) => {
-        const { todo } = payload;
-        history.push(`/todos/${todo.id}`);
-      });
-    },
-    [history, create]
-  );
-
-  return <TodoCreate isFetching={isFetching} onCreate={onCreate} />;
+  return <TodoCreate isFetching={isFetching} onCreate={create} />;
 });
