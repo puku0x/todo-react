@@ -1,19 +1,15 @@
-import { FunctionComponent, memo, useEffect } from 'react';
+import { memo } from 'react';
 
-import { useTodoStore } from '../../../../../store';
 import { TodoDetail } from '../../components';
+import { useTodoDetailFacade } from './todo-detail.facade';
 
 type Props = {
   id: string;
 };
 
-export const TodoDetailContainer: FunctionComponent<Props> = memo((props) => {
+export const TodoDetailContainer = memo((props: Props) => {
   const { id } = props;
-  const { isFetching, todo, fetch } = useTodoStore();
-
-  useEffect(() => {
-    fetch({ id });
-  }, [id, fetch]);
+  const { isFetching, todo } = useTodoDetailFacade({ id });
 
   return <TodoDetail isFetching={isFetching} todo={todo} />;
 });
