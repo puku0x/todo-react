@@ -1,9 +1,13 @@
 import { renderHook } from '@testing-library/react-hooks';
 import { FunctionComponent } from 'react';
 import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router-dom';
 import configureStore from 'redux-mock-store';
 
-import { TodoCreateDto } from '../../../../../models';
+import {
+  createTodoCreateDtoMock,
+  createTodoMock,
+} from '../../../../../models/testing';
 import { createTodo } from '../../../../../store/todo';
 import { useTodoCreateFacade } from './todo-create.facade';
 
@@ -23,7 +27,9 @@ const mockStore = configureStore();
 const store = mockStore();
 
 const wrapper: FunctionComponent = ({ children }) => (
-  <Provider store={store}>{children}</Provider>
+  <MemoryRouter>
+    <Provider store={store}>{children}</Provider>
+  </MemoryRouter>
 );
 
 describe('useTodoCreateFacade', () => {
@@ -34,9 +40,11 @@ describe('useTodoCreateFacade', () => {
   it('should dispatch createTodo', async () => {
     const { result } = renderHook(() => useTodoCreateFacade(), { wrapper });
     const { create } = result.current;
-    const dto: TodoCreateDto = {
-      title: 'title',
-    };
+    const dto = createTodoCreateDtoMock();
+    const todo = createTodoMock();
+
+    mockDispatch.mockResolvedValue({ payload: { todo } });
+
     create(dto);
 
     expect(mockDispatch).toHaveBeenCalled();
