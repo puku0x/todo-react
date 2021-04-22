@@ -1,9 +1,9 @@
-import { FunctionComponent, Suspense } from 'react';
+import { Suspense } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 import { TodoPage } from './pages/todo';
 
-export const App: FunctionComponent = () => {
+export const App = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Switch>

@@ -1,4 +1,4 @@
-import { FunctionComponent, memo } from 'react';
+import { memo } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { TodoCreateDto } from '../../../../../models';
@@ -9,7 +9,7 @@ type Props = {
   onCreate?: (todo: TodoCreateDto) => void;
 };
 
-export const TodoCreate: FunctionComponent<Props> = memo((props) => {
+export const TodoCreate = memo((props: Props) => {
   const { isFetching, onCreate } = props;
 
   const {
