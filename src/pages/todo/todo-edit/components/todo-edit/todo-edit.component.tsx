@@ -7,7 +7,7 @@ import { useTodoEditPresenter } from './todo-edit.presenter';
 type Props = {
   isFetching?: boolean;
   todo: Todo | null;
-  onUpdate?: (todo: TodoUpdateDto) => void;
+  onUpdate?: (id: string, todo: TodoUpdateDto) => void;
 };
 
 export const TodoEdit: FunctionComponent<Props> = memo((props) => {

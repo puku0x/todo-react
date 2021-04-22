@@ -20,7 +20,7 @@ const toDto = (todo: Todo, values: FormValues) => {
 
 export const useTodoEditPresenter = (arg: {
   todo: Todo | null;
-  onUpdate?: (todo: TodoUpdateDto) => void;
+  onUpdate?: (id: string, todo: TodoUpdateDto) => void;
 }) => {
   const { todo, onUpdate } = arg;
 
@@ -44,7 +44,7 @@ export const useTodoEditPresenter = (arg: {
     validationSchema,
     onSubmit: (values) => {
       if (todo) {
-        onUpdate?.(toDto(todo, values));
+        onUpdate?.(todo.id, toDto(todo, values));
       }
     },
   });
