@@ -28,12 +28,12 @@ const wrapper: FunctionComponent = ({ children }) => (
   </MemoryRouter>
 );
 
-describe('useTodoCreateFacade', () => {
+describe('useTodoDetailFacade', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it('should dispatch createTodo', async () => {
+  it('should dispatch fetchTodo', async () => {
     const id = '1';
     const { result } = renderHook(() => useTodoDetailFacade({ id }), {
       wrapper,
