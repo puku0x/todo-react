@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TodoDetail render 1`] = `
+<DocumentFragment>
+  <a
+    href="/todos"
+  >
+    Back to list
+  </a>
+  <h2>
+    todo-detail
+  </h2>
+  <p>
+    <a
+      href="/todos/1/edit"
+    >
+      Edit this todo
+    </a>
+  </p>
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          title
+        </td>
+        <td>
+          title
+        </td>
+      </tr>
+      <tr>
+        <td>
+          completed
+        </td>
+        <td>
+          false
+        </td>
+      </tr>
+      <tr>
+        <td>
+          createdAt
+        </td>
+        <td>
+          1970-01-02T10:17:36.789Z
+        </td>
+      </tr>
+      <tr>
+        <td>
+          updatedAt
+        </td>
+        <td>
+          1970-01-02T10:17:36.789Z
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</DocumentFragment>
+`;
+
+exports[`TodoDetail render with isFetching 1`] = `
+<DocumentFragment>
+  <a
+    href="/todos"
+  >
+    Back to list
+  </a>
+  <h2>
+    todo-detail
+  </h2>
+  loading...
+</DocumentFragment>
+`;
