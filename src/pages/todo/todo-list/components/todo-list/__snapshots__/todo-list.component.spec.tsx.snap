@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TodoList render 1`] = `
+<DocumentFragment>
+  <h2>
+    todo-list
+  </h2>
+  <p>
+    <a
+      class="css-1qjclwt"
+      href="/todos/new"
+    >
+      Add a new todo
+    </a>
+  </p>
+  <form>
+     offset 
+    <input
+      min="0"
+      name="offset"
+      type="number"
+      value="0"
+    />
+     limit 
+    <input
+      min="0"
+      name="limit"
+      type="number"
+      value="10"
+    />
+  </form>
+  <ul>
+    <li>
+      <a
+        class=" css-1qjclwt"
+        href="/todos/1"
+      >
+        title
+      </a>
+    </li>
+    <li>
+      <a
+        class=" css-1qjclwt"
+        href="/todos/2"
+      >
+        title
+      </a>
+    </li>
+    <li>
+      <a
+        class=" css-1qjclwt"
+        href="/todos/3"
+      >
+        title
+      </a>
+    </li>
+  </ul>
+</DocumentFragment>
+`;
+
+exports[`TodoList render with isFetching 1`] = `
+<DocumentFragment>
+  <h2>
+    todo-list
+  </h2>
+  <p>
+    <a
+      class="css-1qjclwt"
+      href="/todos/new"
+    >
+      Add a new todo
+    </a>
+  </p>
+  <form>
+     offset 
+    <input
+      min="0"
+      name="offset"
+      type="number"
+      value="0"
+    />
+     limit 
+    <input
+      min="0"
+      name="limit"
+      type="number"
+      value="10"
+    />
+  </form>
+  <ul />
+</DocumentFragment>
+`;
