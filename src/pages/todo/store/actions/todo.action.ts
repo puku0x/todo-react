@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { TodoCreateDto, TodoUpdateDto } from '../../../models';
-import { todoService } from '../../../services';
+import { TodoCreateDto, TodoUpdateDto } from '../../../../models';
+import { todoService } from '../../../../services';
 import { featureKey } from '../states';
 
 export const fetchAllTodos = createAsyncThunk(

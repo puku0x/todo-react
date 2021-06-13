@@ -1,6 +1,6 @@
 import { EntityState, createEntityAdapter } from '@reduxjs/toolkit';
 
-import { Todo } from '../../../models';
+import { Todo } from '../../../../models';
 
 export const featureKey = 'todos';
 
@@ -13,5 +13,5 @@ export const adapter = createEntityAdapter<Todo>();
 
 export const initialState: TodoState = adapter.getInitialState({
   isFetching: false,
-  selectedId: null
+  selectedId: null,
 });

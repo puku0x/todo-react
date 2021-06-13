@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { TodoCreateDto } from '../../../../../models';
-import { createTodo, isFetchingSelector } from '../../../../../store/todo';
+import { createTodo, isFetchingSelector } from '../../../store';
 
 export const useTodoCreateFacade = () => {
   const history = useHistory();

@@ -7,7 +7,7 @@ import {
   fetchAllTodos,
   isFetchingSelector,
   todosSelector,
-} from '../../../../../store/todo';
+} from '../../../store';
 
 export const useTodoListFacade = (arg: { offset?: number; limit?: number }) => {
   const { offset, limit } = arg;

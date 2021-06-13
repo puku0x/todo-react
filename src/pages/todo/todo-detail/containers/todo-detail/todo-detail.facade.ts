@@ -2,11 +2,7 @@ import { AnyAction, ThunkDispatch, unwrapResult } from '@reduxjs/toolkit';
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  fetchTodo,
-  isFetchingSelector,
-  todoSelector,
-} from '../../../../../store/todo';
+import { fetchTodo, isFetchingSelector, todoSelector } from '../../../store';
 
 export const useTodoDetailFacade = (arg: { id: string }) => {
   const { id } = arg;

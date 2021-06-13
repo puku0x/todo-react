@@ -1,14 +1,11 @@
 import {
+  Reducer,
   configureStore,
   combineReducers,
   getDefaultMiddleware,
 } from '@reduxjs/toolkit';
 
-import * as todo from './todo';
-
-const reducer = combineReducers({
-  [todo.featureKey]: todo.reducer,
-});
+const reducer = combineReducers<any>({});
 
 const middleware = getDefaultMiddleware({
   thunk: true,
@@ -21,6 +18,15 @@ export const store = configureStore({
   middleware,
   devTools: true,
 });
+
+export const addReducer = (key: string, value: Reducer) => {
+  store.replaceReducer(
+    combineReducers({
+      ...reducer,
+      [key]: value,
+    })
+  );
+};
 
 export type State = ReturnType<typeof reducer>;
 export type AppDispatch = typeof store.dispatch;
