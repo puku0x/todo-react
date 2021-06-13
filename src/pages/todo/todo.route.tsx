@@ -1,10 +1,14 @@
 import { Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
+import { addReducer } from '../../store';
+import * as todoStore from './store';
 import { TodoCreatePage } from './todo-create';
 import { TodoDetailPage } from './todo-detail';
 import { TodoEditPage } from './todo-edit';
 import { TodoListPage } from './todo-list';
+
+addReducer(todoStore.featureKey, todoStore.reducer);
 
 export const TodoRoute = () => {
   return (

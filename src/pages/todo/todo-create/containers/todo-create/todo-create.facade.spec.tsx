@@ -8,7 +8,7 @@ import {
   createTodoCreateDtoMock,
   createTodoMock,
 } from '../../../../../models/testing';
-import { createTodo } from '../../../../../store/todo';
+import { createTodo } from '../../../store';
 import { useTodoCreateFacade } from './todo-create.facade';
 
 const mockDispatch = jest.fn().mockResolvedValue({});
@@ -18,8 +18,8 @@ jest.mock('react-redux', () => ({
   useSelector: () => jest.fn(),
 }));
 
-jest.mock('../../../../../store/todo', () => ({
-  ...jest.requireActual('../../../../../store/todo'),
+jest.mock('../../../store/todo', () => ({
+  ...jest.requireActual('../../../store/todo'),
   createTodo: jest.fn(),
 }));
 

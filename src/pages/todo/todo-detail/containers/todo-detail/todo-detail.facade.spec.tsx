@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import configureStore from 'redux-mock-store';
 
-import { fetchTodo } from '../../../../../store/todo';
+import { fetchTodo } from '../../../store';
 import { useTodoDetailFacade } from './todo-detail.facade';
 
 const mockDispatch = jest.fn().mockResolvedValue({});
@@ -14,8 +14,8 @@ jest.mock('react-redux', () => ({
   useSelector: () => jest.fn(),
 }));
 
-jest.mock('../../../../../store/todo', () => ({
-  ...jest.requireActual('../../../../../store/todo'),
+jest.mock('../../../store', () => ({
+  ...jest.requireActual('../../../store'),
   fetchTodo: jest.fn(),
 }));
 

@@ -9,7 +9,7 @@ import {
   updateTodo,
   isFetchingSelector,
   todoSelector,
-} from '../../../../../store/todo';
+} from '../../../store';
 
 export const useTodoEditFacade = (arg: { id: string }) => {
   const { id } = arg;

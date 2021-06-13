@@ -1,4 +1,4 @@
-import { Todo } from '../../../models';
+import { Todo } from '../../../../models';
 import { TodoState, adapter, featureKey, initialState } from '../states';
 import {
   isFetchingSelector,
