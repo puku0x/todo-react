@@ -2,12 +2,12 @@ import { act, render } from '@testing-library/react';
 import { Fragment } from 'react';
 import { MemoryRouter } from 'react-router-dom';
 
-import { createTodoMock } from '../../../../../models/testing';
+import { generateTodoMock } from '../../../../../models/testing';
 import { TodoDetail } from './todo-detail.component';
 
 describe('TodoDetail', () => {
   it('render', async () => {
-    const todo = createTodoMock();
+    const todo = generateTodoMock();
     let result = render(<Fragment />);
     await act(async () => {
       result = render(<TodoDetail todo={todo} />, { wrapper: MemoryRouter });

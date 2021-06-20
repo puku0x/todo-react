@@ -5,8 +5,8 @@ import { MemoryRouter } from 'react-router-dom';
 import configureStore from 'redux-mock-store';
 
 import {
-  createTodoUpdateDtoMock,
-  createTodoMock,
+  generateTodoUpdateDtoMock,
+  generateTodoMock,
 } from '../../../../../models/testing';
 import { fetchTodo, updateTodo } from '../../../../../store/todo';
 import { useTodoEditFacade } from './todo-edit.facade';
@@ -56,8 +56,8 @@ describe('useTodoEditFacade', () => {
       wrapper,
     });
     const { update } = result.current;
-    const dto = createTodoUpdateDtoMock();
-    const todo = createTodoMock();
+    const dto = generateTodoUpdateDtoMock();
+    const todo = generateTodoMock();
 
     mockDispatch.mockResolvedValue({ payload: { todo } });
 

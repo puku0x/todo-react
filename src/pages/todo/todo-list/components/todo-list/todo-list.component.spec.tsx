@@ -2,12 +2,12 @@ import { act, render } from '@testing-library/react';
 import { Fragment } from 'react';
 import { MemoryRouter } from 'react-router-dom';
 
-import { createTodosMock } from '../../../../../models/testing';
+import { generateTodosMock } from '../../../../../models/testing';
 import { TodoList } from './todo-list.component';
 
 describe('TodoList', () => {
   it('render', async () => {
-    const todos = createTodosMock();
+    const todos = generateTodosMock();
     const offset = 0;
     const limit = 10;
     let result = render(<Fragment />);

@@ -1,6 +1,6 @@
 import { Todo, TodoCreateDto, TodoUpdateDto } from '../todo.model';
 
-export const createTodosMock = (): Todo[] => {
+export const generateTodosMock = (): Todo[] => {
   return [
     {
       id: '1',
@@ -26,7 +26,7 @@ export const createTodosMock = (): Todo[] => {
   ];
 };
 
-export const createTodoMock = (): Todo => {
+export const generateTodoMock = (): Todo => {
   return {
     id: '1',
     title: 'title',
@@ -36,13 +36,13 @@ export const createTodoMock = (): Todo => {
   };
 };
 
-export const createTodoCreateDtoMock = (): TodoCreateDto => {
+export const generateTodoCreateDtoMock = (): TodoCreateDto => {
   return {
     title: 'title',
   };
 };
 
-export const createTodoUpdateDtoMock = (): TodoUpdateDto => {
+export const generateTodoUpdateDtoMock = (): TodoUpdateDto => {
   return {
     id: '1',
     title: 'title',

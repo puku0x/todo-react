@@ -1,4 +1,9 @@
-import { Todo, TodoCreateDto, TodoUpdateDto } from '../../models';
+import {
+  generateTodoCreateDtoMock,
+  generateTodoMock,
+  generateTodosMock,
+  generateTodoUpdateDtoMock,
+} from '../../models/testing';
 
 import { TodoService } from './todo.service';
 
@@ -14,29 +19,7 @@ describe('TodoService', () => {
   it('should handle fetchAll', async () => {
     const offset = 0;
     const limit = 10;
-    const todos: Todo[] = [
-      {
-        id: '1',
-        title: 'title',
-        completed: false,
-        createdAt: 123456789,
-        updatedAt: 123456789,
-      },
-      {
-        id: '2',
-        title: 'title',
-        completed: false,
-        createdAt: 123456789,
-        updatedAt: 123456789,
-      },
-      {
-        id: '3',
-        title: 'title',
-        completed: false,
-        createdAt: 123456789,
-        updatedAt: 123456789,
-      },
-    ];
+    const todos = generateTodosMock();
 
     const fetchMock = jest.fn().mockResolvedValueOnce({ json: () => todos });
     globalThis.fetch = fetchMock;
@@ -57,13 +40,7 @@ describe('TodoService', () => {
 
   it('should handle fetch', async () => {
     const id = '1';
-    const todo: Todo = {
-      id: '1',
-      title: 'title',
-      completed: false,
-      createdAt: 123456789,
-      updatedAt: 123456789,
-    };
+    const todo = generateTodoMock();
 
     const fetchMock = jest.fn().mockResolvedValueOnce({ json: () => todo });
     globalThis.fetch = fetchMock;
@@ -80,16 +57,8 @@ describe('TodoService', () => {
   });
 
   it('should handle create', async () => {
-    const todo: Todo = {
-      id: '1',
-      title: 'title',
-      completed: false,
-      createdAt: 123456789,
-      updatedAt: 123456789,
-    };
-    const dto: TodoCreateDto = {
-      title: 'title',
-    };
+    const todo = generateTodoMock();
+    const dto = generateTodoCreateDtoMock();
 
     const fetchMock = jest.fn().mockResolvedValueOnce({ json: () => todo });
     globalThis.fetch = fetchMock;
@@ -108,18 +77,8 @@ describe('TodoService', () => {
 
   it('should handle update', async () => {
     const id = '1';
-    const todo: Todo = {
-      id: '1',
-      title: 'title',
-      completed: false,
-      createdAt: 123456789,
-      updatedAt: 123456789,
-    };
-    const dto: TodoUpdateDto = {
-      id: '1',
-      title: 'title',
-      completed: true,
-    };
+    const todo = generateTodoMock();
+    const dto = generateTodoUpdateDtoMock();
 
     const fetchMock = jest.fn().mockResolvedValueOnce({ json: () => todo });
     globalThis.fetch = fetchMock;

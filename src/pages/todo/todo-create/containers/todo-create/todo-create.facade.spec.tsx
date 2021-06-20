@@ -5,8 +5,8 @@ import { MemoryRouter } from 'react-router-dom';
 import configureStore from 'redux-mock-store';
 
 import {
-  createTodoCreateDtoMock,
-  createTodoMock,
+  generateTodoCreateDtoMock,
+  generateTodoMock,
 } from '../../../../../models/testing';
 import { createTodo } from '../../../../../store/todo';
 import { useTodoCreateFacade } from './todo-create.facade';
@@ -40,8 +40,8 @@ describe('useTodoCreateFacade', () => {
   it('should dispatch createTodo', async () => {
     const { result } = renderHook(() => useTodoCreateFacade(), { wrapper });
     const { create } = result.current;
-    const dto = createTodoCreateDtoMock();
-    const todo = createTodoMock();
+    const dto = generateTodoCreateDtoMock();
+    const todo = generateTodoMock();
 
     mockDispatch.mockResolvedValue({ payload: { todo } });
 
