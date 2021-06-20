@@ -1,9 +1,12 @@
-import { getDefaultMiddleware } from '@reduxjs/toolkit';
+import {
+  AnyAction,
+  ThunkDispatch,
+  getDefaultMiddleware,
+} from '@reduxjs/toolkit';
 import configureStore from 'redux-mock-store';
 
 import { Todo, TodoCreateDto, TodoUpdateDto } from '../../../models';
 import { todoService } from '../../../services';
-import { State, AppDispatch } from '../../store';
 import {
   fetchAllTodos,
   fetchTodo,
@@ -14,7 +17,10 @@ import {
 
 describe('actions', () => {
   const middlewares = getDefaultMiddleware({ serializableCheck: false });
-  const mockStore = configureStore<State, AppDispatch>(middlewares);
+  const mockStore =
+    configureStore<unknown, ThunkDispatch<unknown, undefined, AnyAction>>(
+      middlewares
+    );
 
   it(`should create ${fetchAllTodos.fulfilled.type}`, async () => {
     const todos: Todo[] = [

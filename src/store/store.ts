@@ -23,4 +23,4 @@ export const store = configureStore({
 });
 
 export type State = ReturnType<typeof reducer>;
-export type AppDispatch = typeof store.dispatch;
+// export type AppDispatch = typeof store.dispatch;
