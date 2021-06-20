@@ -1,4 +1,4 @@
-import { Todo } from '../../../models';
+import { generateTodosMock } from '../../../models/testing';
 import { TodoState, adapter, featureKey, initialState } from '../states';
 import {
   isFetchingSelector,
@@ -36,29 +36,7 @@ describe('selectors', () => {
   });
 
   it('should handle todoSelector', () => {
-    const todos: Todo[] = [
-      {
-        id: '1',
-        title: 'title',
-        completed: false,
-        createdAt: 123456789,
-        updatedAt: 123456789,
-      },
-      {
-        id: '2',
-        title: 'title',
-        completed: false,
-        createdAt: 123456789,
-        updatedAt: 123456789,
-      },
-      {
-        id: '3',
-        title: 'title',
-        completed: false,
-        createdAt: 123456789,
-        updatedAt: 123456789,
-      },
-    ];
+    const todos = generateTodosMock();
     const state1: State = {
       [featureKey]: adapter.setAll({ ...initialState, selectedId: '1' }, todos),
     };

@@ -8,6 +8,12 @@ import {
   removeTodo,
 } from '../actions';
 import { reducer } from './todo.reducer';
+import {
+  generateTodoCreateDtoMock,
+  generateTodoMock,
+  generateTodosMock,
+  generateTodoUpdateDtoMock,
+} from '../../../models/testing';
 
 describe('reducers', () => {
   it('should handle unknown action', () => {
@@ -50,29 +56,7 @@ describe('reducers', () => {
     const action: ReturnType<typeof fetchAllTodos.fulfilled> = {
       type: fetchAllTodos.fulfilled.type,
       payload: {
-        todos: [
-          {
-            id: '1',
-            title: 'title',
-            completed: false,
-            createdAt: 123456789,
-            updatedAt: 123456789,
-          },
-          {
-            id: '2',
-            title: 'title',
-            completed: false,
-            createdAt: 123456789,
-            updatedAt: 123456789,
-          },
-          {
-            id: '3',
-            title: 'title',
-            completed: false,
-            createdAt: 123456789,
-            updatedAt: 123456789,
-          },
-        ],
+        todos: generateTodosMock(),
       },
       meta: {
         arg: {
@@ -149,29 +133,7 @@ describe('reducers', () => {
   });
 
   it(`should handle ${fetchTodo.fulfilled.type}`, () => {
-    const todos: Todo[] = [
-      {
-        id: '1',
-        title: 'title',
-        completed: false,
-        createdAt: 123456789,
-        updatedAt: 123456789,
-      },
-      {
-        id: '2',
-        title: 'title',
-        completed: false,
-        createdAt: 123456789,
-        updatedAt: 123456789,
-      },
-      {
-        id: '3',
-        title: 'title',
-        completed: false,
-        createdAt: 123456789,
-        updatedAt: 123456789,
-      },
-    ];
+    const todos = generateTodosMock();
     const state: TodoState = adapter.setAll(
       {
         ...initialState,
@@ -183,13 +145,7 @@ describe('reducers', () => {
     const action: ReturnType<typeof fetchTodo.fulfilled> = {
       type: fetchTodo.fulfilled.type,
       payload: {
-        todo: {
-          id: '1',
-          title: 'title',
-          completed: false,
-          createdAt: 123456789,
-          updatedAt: 123456789,
-        },
+        todo: generateTodoMock(),
       },
       meta: {
         arg: {
@@ -248,9 +204,7 @@ describe('reducers', () => {
       payload: undefined,
       meta: {
         arg: {
-          todo: {
-            title: 'title',
-          },
+          todo: generateTodoCreateDtoMock(),
         },
         requestId: '',
         requestStatus: 'pending',
@@ -276,19 +230,11 @@ describe('reducers', () => {
     const action: ReturnType<typeof createTodo.fulfilled> = {
       type: createTodo.fulfilled.type,
       payload: {
-        todo: {
-          id: '1',
-          title: 'title',
-          completed: false,
-          createdAt: 123456789,
-          updatedAt: 123456789,
-        },
+        todo: generateTodoMock(),
       },
       meta: {
         arg: {
-          todo: {
-            title: 'title',
-          },
+          todo: generateTodoCreateDtoMock(),
         },
         requestId: '',
         requestStatus: 'fulfilled',
@@ -317,9 +263,7 @@ describe('reducers', () => {
       meta: {
         aborted: false,
         arg: {
-          todo: {
-            title: 'title',
-          },
+          todo: generateTodoCreateDtoMock(),
         },
         condition: false,
         rejectedWithValue: false,
@@ -346,11 +290,7 @@ describe('reducers', () => {
       meta: {
         arg: {
           id: '1',
-          todo: {
-            id: '1',
-            title: 'title',
-            completed: false,
-          },
+          todo: generateTodoUpdateDtoMock(),
         },
         requestId: '',
         requestStatus: 'pending',
@@ -365,29 +305,7 @@ describe('reducers', () => {
   });
 
   it(`should handle ${updateTodo.fulfilled.type}`, () => {
-    const todos: Todo[] = [
-      {
-        id: '1',
-        title: 'title',
-        completed: false,
-        createdAt: 123456789,
-        updatedAt: 123456789,
-      },
-      {
-        id: '2',
-        title: 'title',
-        completed: false,
-        createdAt: 123456789,
-        updatedAt: 123456789,
-      },
-      {
-        id: '3',
-        title: 'title',
-        completed: false,
-        createdAt: 123456789,
-        updatedAt: 123456789,
-      },
-    ];
+    const todos = generateTodosMock();
     const state: TodoState = adapter.setAll(
       {
         ...initialState,
@@ -398,22 +316,12 @@ describe('reducers', () => {
     const action: ReturnType<typeof updateTodo.fulfilled> = {
       type: updateTodo.fulfilled.type,
       payload: {
-        todo: {
-          id: '1',
-          title: 'title',
-          completed: false,
-          createdAt: 123456789,
-          updatedAt: 123456789,
-        },
+        todo: generateTodoMock(),
       },
       meta: {
         arg: {
           id: '1',
-          todo: {
-            id: '1',
-            title: 'title',
-            completed: false,
-          },
+          todo: generateTodoUpdateDtoMock(),
         },
         requestId: '',
         requestStatus: 'fulfilled',
@@ -446,11 +354,7 @@ describe('reducers', () => {
         aborted: false,
         arg: {
           id: '1',
-          todo: {
-            id: '1',
-            title: 'title',
-            completed: false,
-          },
+          todo: generateTodoUpdateDtoMock(),
         },
         condition: false,
         rejectedWithValue: false,
@@ -493,29 +397,7 @@ describe('reducers', () => {
   });
 
   it(`should handle ${removeTodo.fulfilled.type}`, () => {
-    const todos: Todo[] = [
-      {
-        id: '1',
-        title: 'title',
-        completed: false,
-        createdAt: 123456789,
-        updatedAt: 123456789,
-      },
-      {
-        id: '2',
-        title: 'title',
-        completed: false,
-        createdAt: 123456789,
-        updatedAt: 123456789,
-      },
-      {
-        id: '3',
-        title: 'title',
-        completed: false,
-        createdAt: 123456789,
-        updatedAt: 123456789,
-      },
-    ];
+    const todos = generateTodosMock();
     const state: TodoState = adapter.setAll(
       {
         ...initialState,
