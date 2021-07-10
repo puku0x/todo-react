@@ -4,20 +4,16 @@ import { NavLink } from 'react-router-dom';
 import { TodoCreateDto } from '../../../../../models';
 import { useTodoCreatePresenter } from './todo-create.presenter';
 
-type Props = {
+interface Props {
   isFetching?: boolean;
   onCreate?: (todo: TodoCreateDto) => void;
-};
+}
 
 export const TodoCreate = memo((props: Props) => {
   const { isFetching, onCreate } = props;
 
-  const {
-    isValid,
-    handleBlur,
-    handleChange,
-    handleSubmit,
-  } = useTodoCreatePresenter({ onCreate });
+  const { isValid, handleBlur, handleChange, handleSubmit } =
+    useTodoCreatePresenter({ onCreate });
 
   return (
     <>

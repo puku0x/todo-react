@@ -7,10 +7,10 @@ const datePipe = (date: number) => {
   return new Date(date).toISOString();
 };
 
-type Props = {
+interface Props {
   isFetching?: boolean;
   todo: Todo | null;
-};
+}
 
 export const TodoDetail = memo((props: Props) => {
   const { todo } = props;

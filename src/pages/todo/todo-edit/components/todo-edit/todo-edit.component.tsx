@@ -4,21 +4,17 @@ import { NavLink } from 'react-router-dom';
 import { Todo, TodoUpdateDto } from '../../../../../models';
 import { useTodoEditPresenter } from './todo-edit.presenter';
 
-type Props = {
+interface Props {
   isFetching?: boolean;
   todo: Todo | null;
   onUpdate?: (id: string, todo: TodoUpdateDto) => void;
-};
+}
 
 export const TodoEdit = memo((props: Props) => {
   const { isFetching, todo, onUpdate } = props;
 
-  const {
-    isValid,
-    handleBlur,
-    handleChange,
-    handleSubmit,
-  } = useTodoEditPresenter({ todo, onUpdate });
+  const { isValid, handleBlur, handleChange, handleSubmit } =
+    useTodoEditPresenter({ todo, onUpdate });
 
   return (
     <>

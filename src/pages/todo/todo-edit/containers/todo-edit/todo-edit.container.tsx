@@ -3,9 +3,9 @@ import { memo } from 'react';
 import { TodoEdit } from '../../components';
 import { useTodoEditFacade } from './todo-edit.facade';
 
-type Props = {
+interface Props {
   id: string;
-};
+}
 
 export const TodoEditContainer = memo((props: Props) => {
   const { id } = props;

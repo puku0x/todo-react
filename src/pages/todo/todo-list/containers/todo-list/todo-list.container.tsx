@@ -3,10 +3,10 @@ import { memo } from 'react';
 import { TodoList } from '../../components';
 import { useTodoListFacade } from './todo-list.facade';
 
-type Props = {
+interface Props {
   offset: number;
   limit: number;
-};
+}
 
 export const TodoListContainer = memo((props: Props) => {
   const { offset, limit } = props;

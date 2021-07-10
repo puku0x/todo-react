@@ -11,14 +11,14 @@ const NavLink = styled(NavLinkBase)`
   }
 `;
 
-type Props = {
+interface Props {
   isFetching?: boolean;
   todos: Todo[];
   offset: number;
   limit: number;
   onChangeOffset?: (offset: number) => void;
   onChangeLimit?: (limit: number) => void;
-};
+}
 
 export const TodoList = memo((props: Props) => {
   const { todos, offset, limit, onChangeOffset, onChangeLimit } = props;

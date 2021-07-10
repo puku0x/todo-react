@@ -3,9 +3,9 @@ import { memo } from 'react';
 import { TodoDetail } from '../../components';
 import { useTodoDetailFacade } from './todo-detail.facade';
 
-type Props = {
+interface Props {
   id: string;
-};
+}
 
 export const TodoDetailContainer = memo((props: Props) => {
   const { id } = props;
