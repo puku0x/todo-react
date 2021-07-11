@@ -1,20 +1,10 @@
-import { memo, useMemo } from 'react';
-import { useLocation } from 'react-router-dom';
+import { memo } from 'react';
 
 import { TodoListContainer } from './containers';
+import { useTodoListParams } from './todo-list.params';
 
 export const TodoListPage = memo(() => {
-  const location = useLocation();
-  const { offset, limit } = useMemo(() => {
-    const params = new URLSearchParams(location.search);
-    const offset = +(params.get('offset') || '0');
-    const limit = +(params.get('limit') || '10');
-
-    return {
-      offset,
-      limit,
-    } as const;
-  }, [location.search]);
+  const { offset, limit } = useTodoListParams();
 
   return <TodoListContainer offset={offset} limit={limit} />;
 });
