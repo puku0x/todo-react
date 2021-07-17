@@ -1,14 +1,10 @@
 import { memo } from 'react';
-import { useParams } from 'react-router-dom';
 
 import { TodoDetailContainer } from './containers';
-
-interface RouterParams {
-  id: string;
-}
+import { useTodoDetailParams } from './todo-detail.params';
 
 export const TodoDetailPage = memo(() => {
-  const { id } = useParams<RouterParams>();
+  const { id } = useTodoDetailParams();
 
   return <TodoDetailContainer id={id} />;
 });
