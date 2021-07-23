@@ -1,8 +1,8 @@
+import { configureStore } from '@reduxjs/toolkit';
 import { render } from '@testing-library/react';
-import { FunctionComponent } from 'react';
+import { PropsWithChildren } from 'react';
 import { Provider } from 'react-redux';
-import { MemoryRouter } from 'react-router-dom';
-import configureStore from 'redux-mock-store';
+import { MemoryRouter, MemoryRouterProps } from 'react-router-dom';
 
 import { TodoCreateContainer } from './todo-create.container';
 import { useTodoCreateFacade } from './todo-create.facade';
@@ -17,14 +17,16 @@ jest.mock('./todo-create.facade', () => ({
   useTodoCreateFacade: jest.fn(() => ({})),
 }));
 
-const mockStore = configureStore();
-const store = mockStore();
+const wrapper = (props: PropsWithChildren<MemoryRouterProps>) => {
+  const { children, initialEntries, initialIndex } = props;
+  const store = configureStore({ reducer: jest.fn() });
 
-const wrapper: FunctionComponent = ({ children }) => (
-  <MemoryRouter>
-    <Provider store={store}>{children}</Provider>
-  </MemoryRouter>
-);
+  return (
+    <MemoryRouter initialEntries={initialEntries} initialIndex={initialIndex}>
+      <Provider store={store}>{children}</Provider>
+    </MemoryRouter>
+  );
+};
 
 describe('TodoCreateContainer', () => {
   it('should render', () => {

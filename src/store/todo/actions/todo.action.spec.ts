@@ -1,11 +1,5 @@
-import {
-  AnyAction,
-  ThunkDispatch,
-  getDefaultMiddleware,
-} from '@reduxjs/toolkit';
-import configureStore from 'redux-mock-store';
+import { configureStore } from '@reduxjs/toolkit';
 
-import { Todo, TodoCreateDto, TodoUpdateDto } from '../../../models';
 import {
   generateTodoMock,
   generateTodosMock,
@@ -22,82 +16,59 @@ import {
 } from './todo.action';
 
 describe('actions', () => {
-  const middlewares = getDefaultMiddleware({ serializableCheck: false });
-  const mockStore =
-    configureStore<unknown, ThunkDispatch<unknown, undefined, AnyAction>>(
-      middlewares
-    );
-
   it(`should create ${fetchAllTodos.fulfilled.type}`, async () => {
     const todos = generateTodosMock();
+    const spy = jest.spyOn(todoService, 'fetchAll').mockResolvedValue(todos);
+    const store = configureStore({ reducer: jest.fn() });
+    const offset = 0;
+    const limit = 10;
+    const { payload } = await store.dispatch(fetchAllTodos({ offset, limit }));
 
-    jest.spyOn(todoService, 'fetchAll').mockResolvedValue(todos);
-
-    const store = mockStore();
-    await store.dispatch(fetchAllTodos({ offset: 0, limit: 10 }));
-    const actions = store.getActions();
-
-    expect(actions[0].type).toEqual(fetchAllTodos.pending.type);
-    expect(actions[1].type).toEqual(fetchAllTodos.fulfilled.type);
-    expect(actions[1].payload).toEqual({ todos });
+    expect(spy).toHaveBeenCalledWith(offset, limit);
+    expect(payload).toEqual({ todos });
   });
 
   it(`should create ${fetchTodo.fulfilled.type}`, async () => {
-    const id = '1';
     const todo = generateTodoMock();
+    const spy = jest.spyOn(todoService, 'fetch').mockResolvedValue(todo);
+    const store = configureStore({ reducer: jest.fn() });
+    const id = '1';
+    const { payload } = await store.dispatch(fetchTodo({ id }));
 
-    jest.spyOn(todoService, 'fetch').mockResolvedValue(todo);
-
-    const store = mockStore();
-    await store.dispatch(fetchTodo({ id }));
-    const actions = store.getActions();
-
-    expect(actions[0].type).toEqual(fetchTodo.pending.type);
-    expect(actions[1].type).toEqual(fetchTodo.fulfilled.type);
-    expect(actions[1].payload).toEqual({ todo });
+    expect(spy).toHaveBeenCalledWith(id);
+    expect(payload).toEqual({ todo });
   });
 
   it(`should create ${createTodo.fulfilled.type}`, async () => {
-    const dto = generateTodoCreateDtoMock();
     const todo = generateTodoMock();
+    const spy = jest.spyOn(todoService, 'create').mockResolvedValue(todo);
+    const store = configureStore({ reducer: jest.fn() });
+    const dto = generateTodoCreateDtoMock();
+    const { payload } = await store.dispatch(createTodo({ todo: dto }));
 
-    jest.spyOn(todoService, 'create').mockResolvedValue(todo);
-
-    const store = mockStore();
-    await store.dispatch(createTodo({ todo: dto }));
-    const actions = store.getActions();
-
-    expect(actions[0].type).toEqual(createTodo.pending.type);
-    expect(actions[1].type).toEqual(createTodo.fulfilled.type);
-    expect(actions[1].payload).toEqual({ todo });
+    expect(spy).toHaveBeenCalledWith(dto);
+    expect(payload).toEqual({ todo });
   });
 
   it(`should create ${updateTodo.fulfilled.type}`, async () => {
-    const dto = generateTodoUpdateDtoMock();
     const todo = generateTodoMock();
+    const spy = jest.spyOn(todoService, 'update').mockResolvedValue(todo);
+    const store = configureStore({ reducer: jest.fn() });
+    const id = '1';
+    const dto = generateTodoUpdateDtoMock();
+    const { payload } = await store.dispatch(updateTodo({ id, todo: dto }));
 
-    jest.spyOn(todoService, 'update').mockResolvedValue(todo);
-
-    const store = mockStore();
-    await store.dispatch(updateTodo({ id: dto.id, todo: dto }));
-    const actions = store.getActions();
-
-    expect(actions[0].type).toEqual(updateTodo.pending.type);
-    expect(actions[1].type).toEqual(updateTodo.fulfilled.type);
-    expect(actions[1].payload).toEqual({ todo });
+    expect(spy).toHaveBeenCalledWith(id, dto);
+    expect(payload).toEqual({ todo });
   });
 
   it(`should create ${removeTodo.fulfilled.type}`, async () => {
     const id = '1';
+    const spy = jest.spyOn(todoService, 'remove').mockResolvedValue(id);
+    const store = configureStore({ reducer: jest.fn() });
+    const { payload } = await store.dispatch(removeTodo({ id }));
 
-    jest.spyOn(todoService, 'remove').mockResolvedValue(id);
-
-    const store = mockStore();
-    await store.dispatch(removeTodo({ id }));
-    const actions = store.getActions();
-
-    expect(actions[0].type).toEqual(removeTodo.pending.type);
-    expect(actions[1].type).toEqual(removeTodo.fulfilled.type);
-    expect(actions[1].payload).toEqual({ id });
+    expect(spy).toHaveBeenCalledWith(id);
+    expect(payload).toEqual({ id });
   });
 });

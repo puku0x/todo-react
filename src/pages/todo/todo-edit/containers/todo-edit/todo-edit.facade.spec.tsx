@@ -1,8 +1,8 @@
+import { configureStore } from '@reduxjs/toolkit';
 import { renderHook } from '@testing-library/react-hooks';
-import { FunctionComponent } from 'react';
+import { PropsWithChildren } from 'react';
 import { Provider } from 'react-redux';
-import { MemoryRouter } from 'react-router-dom';
-import configureStore from 'redux-mock-store';
+import { MemoryRouter, MemoryRouterProps } from 'react-router-dom';
 
 import {
   generateTodoUpdateDtoMock,
@@ -24,14 +24,16 @@ jest.mock('../../../../../store/todo', () => ({
   updateTodo: jest.fn(),
 }));
 
-const mockStore = configureStore();
-const store = mockStore();
+const wrapper = (props: PropsWithChildren<MemoryRouterProps>) => {
+  const { children, initialEntries, initialIndex } = props;
+  const store = configureStore({ reducer: jest.fn() });
 
-const wrapper: FunctionComponent = ({ children }) => (
-  <MemoryRouter>
-    <Provider store={store}>{children}</Provider>
-  </MemoryRouter>
-);
+  return (
+    <MemoryRouter initialEntries={initialEntries} initialIndex={initialIndex}>
+      <Provider store={store}>{children}</Provider>
+    </MemoryRouter>
+  );
+};
 
 describe('useTodoEditFacade', () => {
   beforeEach(() => {
