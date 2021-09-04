@@ -4,14 +4,14 @@ import { Todo } from '../../../models';
 
 export const featureKey = 'todos';
 
-export interface TodoState extends EntityState<Todo> {
+export interface State extends EntityState<Todo> {
   isFetching: boolean;
   selectedId: string | null;
 }
 
 export const adapter = createEntityAdapter<Todo>();
 
-export const initialState: TodoState = adapter.getInitialState({
+export const initialState: State = adapter.getInitialState({
   isFetching: false,
-  selectedId: null
+  selectedId: null,
 });

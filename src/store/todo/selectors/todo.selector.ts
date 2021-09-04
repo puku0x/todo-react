@@ -1,17 +1,15 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-import { TodoState, adapter, featureKey } from '../states';
+import { State, adapter, featureKey } from '../states';
 
-interface State {
-  [featureKey]: TodoState;
+interface RootState {
+  [featureKey]: State;
 }
 
-const featureStateSelector = (state: State) => state[featureKey];
+const featureStateSelector = (state: RootState) => state[featureKey];
 
-export const {
-  selectAll: todosSelector,
-  selectEntities: entitiesSelector,
-} = adapter.getSelectors(featureStateSelector);
+export const { selectAll: todosSelector, selectEntities: entitiesSelector } =
+  adapter.getSelectors(featureStateSelector);
 
 export const isFetchingSelector = createSelector(
   featureStateSelector,

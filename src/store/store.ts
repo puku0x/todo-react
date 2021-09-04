@@ -22,5 +22,5 @@ export const store = configureStore({
   devTools: true,
 });
 
-export type State = ReturnType<typeof reducer>;
+// export type AppState = ReturnType<typeof reducer>;
 // export type AppDispatch = typeof store.dispatch;
