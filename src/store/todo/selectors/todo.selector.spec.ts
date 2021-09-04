@@ -1,19 +1,19 @@
 import { generateTodosMock } from '../../../models/testing';
-import { TodoState, adapter, featureKey, initialState } from '../states';
+import { State, adapter, featureKey, initialState } from '../states';
 import {
   isFetchingSelector,
   selectedIdSelector,
   todoSelector,
 } from './todo.selector';
 
-interface State {
-  [featureKey]: TodoState;
+interface RootState {
+  [featureKey]: State;
 }
 
 describe('selectors', () => {
   it('should handle isFetchingSelector', () => {
     const isFetching = true;
-    const state: State = {
+    const state: RootState = {
       [featureKey]: {
         ...initialState,
         isFetching,
@@ -25,7 +25,7 @@ describe('selectors', () => {
 
   it('should handle selectedIdSelector', () => {
     const selectedId = '1';
-    const state: State = {
+    const state: RootState = {
       [featureKey]: {
         ...initialState,
         selectedId,
@@ -37,16 +37,16 @@ describe('selectors', () => {
 
   it('should handle todoSelector', () => {
     const todos = generateTodosMock();
-    const state1: State = {
+    const state1: RootState = {
       [featureKey]: adapter.setAll({ ...initialState, selectedId: '1' }, todos),
     };
-    const state2: State = {
+    const state2: RootState = {
       [featureKey]: adapter.setAll(
         { ...initialState, selectedId: '999' },
         todos
       ),
     };
-    const state3: State = {
+    const state3: RootState = {
       [featureKey]: adapter.setAll({ ...initialState }, todos),
     };
 

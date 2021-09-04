@@ -1,5 +1,5 @@
 import { Todo } from '../../../models';
-import { TodoState, initialState, adapter } from '../states';
+import { State, initialState, adapter } from '../states';
 import {
   fetchAllTodos,
   fetchTodo,
@@ -25,22 +25,11 @@ describe('reducers', () => {
   });
 
   it(`should handle ${fetchAllTodos.pending.type}`, () => {
-    const state: TodoState = {
+    const state: State = {
       ...initialState,
     };
-    const action: ReturnType<typeof fetchAllTodos.pending> = {
-      type: fetchAllTodos.pending.type,
-      payload: undefined,
-      meta: {
-        arg: {
-          offset: 0,
-          limit: 10,
-        },
-        requestId: '',
-        requestStatus: 'pending',
-      },
-    };
-    const expectedState: TodoState = {
+    const action = fetchAllTodos.pending('', { offset: 0, limit: 10 });
+    const expectedState: State = {
       ...state,
       isFetching: true,
     };
@@ -49,26 +38,16 @@ describe('reducers', () => {
   });
 
   it(`should handle ${fetchAllTodos.fulfilled.type}`, () => {
-    const state: TodoState = {
+    const state: State = {
       ...initialState,
       isFetching: true,
     };
-    const action: ReturnType<typeof fetchAllTodos.fulfilled> = {
-      type: fetchAllTodos.fulfilled.type,
-      payload: {
-        todos: generateTodosMock(),
-      },
-      meta: {
-        arg: {
-          offset: 0,
-          limit: 10,
-        },
-        requestId: '',
-        requestStatus: 'fulfilled',
-      },
-    };
+    const action = fetchAllTodos.fulfilled({ todos: generateTodosMock() }, '', {
+      offset: 0,
+      limit: 10,
+    });
     const { todos } = action.payload;
-    const expectedState: TodoState = adapter.setAll(
+    const expectedState: State = adapter.setAll(
       {
         ...state,
         isFetching: false,
@@ -80,27 +59,15 @@ describe('reducers', () => {
   });
 
   it(`should handle ${fetchAllTodos.rejected.type}`, () => {
-    const state: TodoState = {
+    const state: State = {
       ...initialState,
       isFetching: true,
     };
-    const action: ReturnType<typeof fetchAllTodos.rejected> = {
-      type: fetchAllTodos.rejected.type,
-      payload: undefined,
-      meta: {
-        aborted: false,
-        arg: {
-          offset: 0,
-          limit: 10,
-        },
-        condition: false,
-        rejectedWithValue: false,
-        requestId: '',
-        requestStatus: 'rejected',
-      },
-      error: new Error(),
-    };
-    const expectedState: TodoState = {
+    const action = fetchAllTodos.rejected(new Error(), '', {
+      offset: 0,
+      limit: 10,
+    });
+    const expectedState: State = {
       ...state,
       isFetching: false,
     };
@@ -109,21 +76,11 @@ describe('reducers', () => {
   });
 
   it(`should handle ${fetchTodo.pending.type}`, () => {
-    const state: TodoState = {
+    const state: State = {
       ...initialState,
     };
-    const action: ReturnType<typeof fetchTodo.pending> = {
-      type: fetchTodo.pending.type,
-      payload: undefined,
-      meta: {
-        arg: {
-          id: '1',
-        },
-        requestId: '',
-        requestStatus: 'pending',
-      },
-    };
-    const expectedState: TodoState = {
+    const action = fetchTodo.pending('', { id: '1' });
+    const expectedState: State = {
       ...state,
       isFetching: true,
       selectedId: '1',
@@ -134,7 +91,7 @@ describe('reducers', () => {
 
   it(`should handle ${fetchTodo.fulfilled.type}`, () => {
     const todos = generateTodosMock();
-    const state: TodoState = adapter.setAll(
+    const state: State = adapter.setAll(
       {
         ...initialState,
         isFetching: true,
@@ -142,21 +99,11 @@ describe('reducers', () => {
       },
       todos
     );
-    const action: ReturnType<typeof fetchTodo.fulfilled> = {
-      type: fetchTodo.fulfilled.type,
-      payload: {
-        todo: generateTodoMock(),
-      },
-      meta: {
-        arg: {
-          id: '1',
-        },
-        requestId: '',
-        requestStatus: 'fulfilled',
-      },
-    };
+    const action = fetchTodo.fulfilled({ todo: generateTodoMock() }, '', {
+      id: '1',
+    });
     const { todo } = action.payload;
-    const expectedState: TodoState = adapter.upsertOne(
+    const expectedState: State = adapter.upsertOne(
       {
         ...state,
         isFetching: false,
@@ -168,26 +115,12 @@ describe('reducers', () => {
   });
 
   it(`should handle ${fetchTodo.rejected.type}`, () => {
-    const state: TodoState = {
+    const state: State = {
       ...initialState,
       isFetching: true,
     };
-    const action: ReturnType<typeof fetchTodo.rejected> = {
-      type: fetchTodo.rejected.type,
-      payload: undefined,
-      meta: {
-        arg: {
-          id: '1',
-        },
-        requestId: '',
-        requestStatus: 'rejected',
-        rejectedWithValue: false,
-        aborted: false,
-        condition: false,
-      },
-      error: new Error(),
-    };
-    const expectedState: TodoState = {
+    const action = fetchTodo.rejected(new Error(), '', { id: '1' });
+    const expectedState: State = {
       ...state,
       isFetching: false,
     };
@@ -196,21 +129,13 @@ describe('reducers', () => {
   });
 
   it(`should handle ${createTodo.pending.type}`, () => {
-    const state: TodoState = {
+    const state: State = {
       ...initialState,
     };
-    const action: ReturnType<typeof createTodo.pending> = {
-      type: createTodo.pending.type,
-      payload: undefined,
-      meta: {
-        arg: {
-          todo: generateTodoCreateDtoMock(),
-        },
-        requestId: '',
-        requestStatus: 'pending',
-      },
-    };
-    const expectedState: TodoState = {
+    const action = createTodo.pending('', {
+      todo: generateTodoCreateDtoMock(),
+    });
+    const expectedState: State = {
       ...state,
       isFetching: true,
     };
@@ -220,28 +145,18 @@ describe('reducers', () => {
 
   it(`should handle ${createTodo.fulfilled.type}`, () => {
     const entries: Todo[] = [];
-    const state: TodoState = adapter.setAll(
+    const state: State = adapter.setAll(
       {
         ...initialState,
         isFetching: true,
       },
       entries
     );
-    const action: ReturnType<typeof createTodo.fulfilled> = {
-      type: createTodo.fulfilled.type,
-      payload: {
-        todo: generateTodoMock(),
-      },
-      meta: {
-        arg: {
-          todo: generateTodoCreateDtoMock(),
-        },
-        requestId: '',
-        requestStatus: 'fulfilled',
-      },
-    };
+    const action = createTodo.fulfilled({ todo: generateTodoMock() }, '', {
+      todo: generateTodoCreateDtoMock(),
+    });
     const { todo } = action.payload;
-    const expectedState: TodoState = adapter.addOne(
+    const expectedState: State = adapter.addOne(
       {
         ...state,
         isFetching: false,
@@ -253,26 +168,14 @@ describe('reducers', () => {
   });
 
   it(`should handle ${createTodo.rejected.type}`, () => {
-    const state: TodoState = {
+    const state: State = {
       ...initialState,
       isFetching: true,
     };
-    const action: ReturnType<typeof createTodo.rejected> = {
-      type: createTodo.rejected.type,
-      payload: undefined,
-      meta: {
-        aborted: false,
-        arg: {
-          todo: generateTodoCreateDtoMock(),
-        },
-        condition: false,
-        rejectedWithValue: false,
-        requestId: '',
-        requestStatus: 'rejected',
-      },
-      error: new Error(),
-    };
-    const expectedState: TodoState = {
+    const action = createTodo.rejected(new Error(), '', {
+      todo: generateTodoCreateDtoMock(),
+    });
+    const expectedState: State = {
       ...state,
       isFetching: false,
     };
@@ -281,22 +184,14 @@ describe('reducers', () => {
   });
 
   it(`should handle ${updateTodo.pending.type}`, () => {
-    const state: TodoState = {
+    const state: State = {
       ...initialState,
     };
-    const action: ReturnType<typeof updateTodo.pending> = {
-      type: updateTodo.pending.type,
-      payload: undefined,
-      meta: {
-        arg: {
-          id: '1',
-          todo: generateTodoUpdateDtoMock(),
-        },
-        requestId: '',
-        requestStatus: 'pending',
-      },
-    };
-    const expectedState: TodoState = {
+    const action = updateTodo.pending('', {
+      id: '1',
+      todo: generateTodoUpdateDtoMock(),
+    });
+    const expectedState: State = {
       ...state,
       isFetching: true,
     };
@@ -306,29 +201,19 @@ describe('reducers', () => {
 
   it(`should handle ${updateTodo.fulfilled.type}`, () => {
     const todos = generateTodosMock();
-    const state: TodoState = adapter.setAll(
+    const state: State = adapter.setAll(
       {
         ...initialState,
         isFetching: true,
       },
       todos
     );
-    const action: ReturnType<typeof updateTodo.fulfilled> = {
-      type: updateTodo.fulfilled.type,
-      payload: {
-        todo: generateTodoMock(),
-      },
-      meta: {
-        arg: {
-          id: '1',
-          todo: generateTodoUpdateDtoMock(),
-        },
-        requestId: '',
-        requestStatus: 'fulfilled',
-      },
-    };
+    const action = updateTodo.fulfilled({ todo: generateTodoMock() }, '', {
+      id: '1',
+      todo: generateTodoUpdateDtoMock(),
+    });
     const { todo } = action.payload;
-    const expectedState: TodoState = adapter.updateOne(
+    const expectedState: State = adapter.updateOne(
       {
         ...state,
         isFetching: false,
@@ -343,27 +228,15 @@ describe('reducers', () => {
   });
 
   it(`should handle ${updateTodo.rejected.type}`, () => {
-    const state: TodoState = {
+    const state: State = {
       ...initialState,
       isFetching: true,
     };
-    const action: ReturnType<typeof updateTodo.rejected> = {
-      type: updateTodo.rejected.type,
-      payload: undefined,
-      meta: {
-        aborted: false,
-        arg: {
-          id: '1',
-          todo: generateTodoUpdateDtoMock(),
-        },
-        condition: false,
-        rejectedWithValue: false,
-        requestId: '',
-        requestStatus: 'rejected',
-      },
-      error: new Error(),
-    };
-    const expectedState: TodoState = {
+    const action = updateTodo.rejected(new Error(), '', {
+      id: '1',
+      todo: generateTodoUpdateDtoMock(),
+    });
+    const expectedState: State = {
       ...state,
       isFetching: false,
     };
@@ -372,22 +245,12 @@ describe('reducers', () => {
   });
 
   it(`should handle ${removeTodo.pending.type}`, () => {
-    const state: TodoState = {
+    const state: State = {
       ...initialState,
       isFetching: false,
     };
-    const action: ReturnType<typeof removeTodo.pending> = {
-      type: removeTodo.pending.type,
-      payload: undefined,
-      meta: {
-        arg: {
-          id: '1',
-        },
-        requestId: '',
-        requestStatus: 'pending',
-      },
-    };
-    const expectedState: TodoState = {
+    const action = removeTodo.pending('', { id: '1' });
+    const expectedState: State = {
       ...state,
       isFetching: true,
       selectedId: '1',
@@ -398,28 +261,16 @@ describe('reducers', () => {
 
   it(`should handle ${removeTodo.fulfilled.type}`, () => {
     const todos = generateTodosMock();
-    const state: TodoState = adapter.setAll(
+    const state: State = adapter.setAll(
       {
         ...initialState,
         isFetching: true,
       },
       todos
     );
-    const action: ReturnType<typeof removeTodo.fulfilled> = {
-      type: removeTodo.fulfilled.type,
-      payload: {
-        id: '1',
-      },
-      meta: {
-        arg: {
-          id: '1',
-        },
-        requestId: '',
-        requestStatus: 'fulfilled',
-      },
-    };
+    const action = removeTodo.fulfilled({ id: '1' }, '', { id: '1' });
     const { id } = action.payload;
-    const expectedState: TodoState = adapter.removeOne(
+    const expectedState: State = adapter.removeOne(
       {
         ...state,
         isFetching: false,
@@ -431,26 +282,12 @@ describe('reducers', () => {
   });
 
   it(`should handle ${removeTodo.rejected.type}`, () => {
-    const state: TodoState = {
+    const state: State = {
       ...initialState,
       isFetching: true,
     };
-    const action: ReturnType<typeof removeTodo.rejected> = {
-      type: removeTodo.rejected.type,
-      payload: undefined,
-      meta: {
-        aborted: false,
-        arg: {
-          id: '1',
-        },
-        condition: false,
-        rejectedWithValue: false,
-        requestId: '',
-        requestStatus: 'rejected',
-      },
-      error: new Error(),
-    };
-    const expectedState: TodoState = {
+    const action = removeTodo.rejected(new Error(), '', { id: '1' });
+    const expectedState: State = {
       ...state,
       isFetching: false,
     };
