@@ -1,7 +1,7 @@
 import { Todo, TodoCreateDto, TodoUpdateDto } from '../../models';
 
 export class TodoService {
-  async fetchAll(offset?: number, limit?: number): Promise<Todo[]> {
+  fetchAll(offset?: number, limit?: number): Promise<Todo[]> {
     const url = new URL(`${this.baseUrl}/todos`);
     if (offset !== undefined) {
       url.searchParams.append('offset', `${offset}`);
@@ -9,55 +9,49 @@ export class TodoService {
     if (limit !== undefined) {
       url.searchParams.append('limit', `${limit}`);
     }
-    return await fetch(url.toString(), {
+
+    return fetch(url.toString(), {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
     }).then((res) => res.json());
   }
 
-  async fetch(id: string): Promise<Todo> {
+  fetch(id: string): Promise<Todo> {
     const url = new URL(`${this.baseUrl}/todos/${id}`);
-    return await fetch(url.toString(), {
+
+    return fetch(url.toString(), {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
     }).then((res) => res.json());
   }
 
-  async create(todo: TodoCreateDto): Promise<Todo> {
+  create(todo: TodoCreateDto): Promise<Todo> {
     const url = new URL(`${this.baseUrl}/todos`);
-    return await fetch(url.toString(), {
+
+    return fetch(url.toString(), {
       method: 'POST',
       body: JSON.stringify(todo),
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
     }).then((res) => res.json());
   }
 
-  async update(id: string, todo: TodoUpdateDto): Promise<Todo> {
+  update(id: string, todo: TodoUpdateDto): Promise<Todo> {
     const url = new URL(`${this.baseUrl}/todos/${id}`);
-    return await fetch(url.toString(), {
+
+    return fetch(url.toString(), {
       method: 'PUT',
       body: JSON.stringify(todo),
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
     }).then((res) => res.json());
   }
 
-  async remove(id: string): Promise<string> {
+  remove(id: string): Promise<string> {
     const url = new URL(`${this.baseUrl}/todos/${id}`);
-    await fetch(url.toString(), {
+
+    return fetch(url.toString(), {
       method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    return id;
+      headers: { 'Content-Type': 'application/json' },
+    }).then(() => id);
   }
 
   constructor(private readonly baseUrl: string) {}
