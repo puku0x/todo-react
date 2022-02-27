@@ -1,4 +1,4 @@
-import { AnyAction, ThunkDispatch, unwrapResult } from '@reduxjs/toolkit';
+import { unwrapResult } from '@reduxjs/toolkit';
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -14,7 +14,7 @@ import {
 export const useTodoEditFacade = (arg: { id: string }) => {
   const { id } = arg;
   const history = useHistory();
-  const dispatch = useDispatch<ThunkDispatch<unknown, undefined, AnyAction>>();
+  const dispatch = useDispatch();
   const isFetching = useSelector(isFetchingSelector);
   const todo = useSelector(todoSelector);
 

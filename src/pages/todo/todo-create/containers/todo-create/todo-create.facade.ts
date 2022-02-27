@@ -1,4 +1,4 @@
-import { AnyAction, ThunkDispatch, unwrapResult } from '@reduxjs/toolkit';
+import { unwrapResult } from '@reduxjs/toolkit';
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -8,7 +8,7 @@ import { createTodo, isFetchingSelector } from '../../../../../store/todo';
 
 export const useTodoCreateFacade = () => {
   const history = useHistory();
-  const dispatch = useDispatch<ThunkDispatch<unknown, undefined, AnyAction>>();
+  const dispatch = useDispatch();
   const isFetching = useSelector(isFetchingSelector);
 
   const create = useCallback(

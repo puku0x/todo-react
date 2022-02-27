@@ -1,4 +1,4 @@
-import { AnyAction, ThunkDispatch, unwrapResult } from '@reduxjs/toolkit';
+import { unwrapResult } from '@reduxjs/toolkit';
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -13,7 +13,7 @@ export const useTodoListFacade = (arg: { offset?: number; limit?: number }) => {
   const { offset, limit } = arg;
   const history = useHistory();
   const location = useLocation();
-  const dispatch = useDispatch<ThunkDispatch<unknown, undefined, AnyAction>>();
+  const dispatch = useDispatch();
   const isFetching = useSelector(isFetchingSelector);
   const todos = useSelector(todosSelector);
 
